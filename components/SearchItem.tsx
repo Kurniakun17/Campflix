@@ -13,7 +13,7 @@ const SearchItem = ({
   return (
     <div
       onClick={() => console.log(name)}
-      className={`flex gap-2 px-4 py-2 ${
+      className={`flex gap-2 cursor-pointer px-4 py-2 ${
         isEven
           ? 'bg-zinc-700/30 hover:bg-zinc-700/20'
           : 'bg-zinc-800 hover:bg-zinc-800/50'

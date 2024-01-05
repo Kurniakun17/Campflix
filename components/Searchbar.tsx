@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 import useMovies from '@/hooks/useMovies';
 import SearchItem from '@/components/SearchItem';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 const searchBarVariants = {
-  initial: { y: '80%', opacity: 0 },
+  initial: { y: '90%', opacity: 0 },
   animate: { y: '100%', opacity: 1 },
   exit: { y: '100%', opacity: 0, height: 0, padding: 0 },
 };
@@ -39,13 +39,13 @@ const Searchbar = () => {
 
   return (
     <div
-      className={`bg-zinc-800 relative z-20 flex flex-col rounded-xl ${
+      className={`bg-zinc-800 relative z-20 flex flex-col ${
         isFocus && 'rounded-b-none'
-      }  w-[90%] sm:w-96 duration-300`}
+      }  w-[90%] sm:w-96 rounded-xl duration-300`}
     >
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="flex gap-2 relative z-30 items-center pl-4"
+        className="flex gap-2 bg-zinc-800 relative z-30 rounded-xl items-center pl-4"
       >
         <button className="py-3 bg-zinc-800">
           <Search size={24} />
@@ -80,8 +80,19 @@ const Searchbar = () => {
                   name={movies[index].show.name}
                 />
               ))}
-              <div className="flex gap-2">
-                <p></p>
+              <div className="flex justify-center px-3 py-2 w-full duration-300 bg-zinc-700/30">
+                <motion.a
+                  whileHover="hovered"
+                  className="flex gap-1 cursor-pointer text-white/60 hover:text-white/80 underline"
+                >
+                  View All Shows{' '}
+                  <motion.span
+                    className="underline"
+                    variants={{ hovered: { x: 10 } }}
+                  >
+                    <ArrowRight />
+                  </motion.span>
+                </motion.a>
               </div>
             </motion.div>
           ) : (
