@@ -14,28 +14,7 @@ const searchBarVariants = {
 
 const Searchbar = () => {
   const { movies, isLoading, getMovies } = useMovies('');
-  const [isFocus, setIsFocus] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const debounce = useDebouncedCallback((value) => {
-    getMovies(value);
-  }, 500);
-
-  useEffect(() => {
-    const handleFocus = () => setIsFocus(true);
-    const handleBlur = () => setIsFocus(false);
-
-    const current = inputRef.current;
-    if (current) {
-      current.addEventListener('focus', handleFocus);
-      current.addEventListener('blur', handleBlur);
-    }
-
-    return () => {
-      current?.removeEventListener('focus', handleFocus);
-      current?.removeEventListener('blur', handleBlur);
-    };
-  }, []);
+  const { isFocus, inputRef, debounce } = useSearchBar(getMovies);
 
   return (
     <div
@@ -124,6 +103,33 @@ const Searchbar = () => {
       </AnimatePresence>
     </div>
   );
+};
+
+const useSearchBar = (getMovies: (value: string) => void) => {
+  const [isFocus, setIsFocus] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const debounce = useDebouncedCallback((value) => {
+    getMovies(value);
+  }, 500);
+
+  useEffect(() => {
+    const handleFocus = () => setIsFocus(true);
+    const handleBlur = () => setIsFocus(false);
+
+    const current = inputRef.current;
+    if (current) {
+      current.addEventListener('focus', handleFocus);
+      current.addEventListener('blur', handleBlur);
+    }
+
+    return () => {
+      current?.removeEventListener('focus', handleFocus);
+      current?.removeEventListener('blur', handleBlur);
+    };
+  }, []);
+
+  return { isFocus, inputRef, debounce };
 };
 
 export default Searchbar;
