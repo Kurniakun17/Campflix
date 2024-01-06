@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowRight, Loader2, Search } from 'lucide-react';
 import useMovies from '@/hooks/useMovies';
 import SearchItem from '@/components/SearchItem';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -58,55 +58,68 @@ const Searchbar = () => {
         />
       </form>
       <AnimatePresence>
-        {!isLoading &&
-          isFocus &&
-          (movies.length > 0 ? (
-            <motion.div
-              key={`${movies.length} search item`}
-              variants={searchBarVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.3 }}
-              className={`flex flex-col absolute bottom-0 -translate-y-20 w-full rounded-b-xl overflow-hidden`}
-            >
-              {Array.from({
-                length: movies.length > 4 ? 4 : movies.length,
-              }).map((_, index) => (
-                <SearchItem
-                  isEven={index % 2 === 0}
-                  key={`${movies[index].show.name} search item`}
-                  url={movies[index].show.image?.medium}
-                  name={movies[index].show.name}
-                />
-              ))}
-              <div className="flex justify-center px-3 py-2 w-full duration-300 bg-zinc-700/30">
-                <motion.a
-                  whileHover="hovered"
-                  className="flex gap-1 cursor-pointer text-white/60 hover:text-white/80 underline"
-                >
-                  View All Shows{' '}
-                  <motion.span
-                    className="underline"
-                    variants={{ hovered: { x: 10 } }}
+        {isFocus &&
+          (!isLoading ? (
+            movies.length > 0 ? (
+              <motion.div
+                key={`${movies.length} search item`}
+                variants={searchBarVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.3 }}
+                className={`flex flex-col absolute bottom-0 -translate-y-20 w-full rounded-b-xl overflow-hidden`}
+              >
+                {Array.from({
+                  length: movies.length > 4 ? 4 : movies.length,
+                }).map((_, index) => (
+                  <SearchItem
+                    isEven={index % 2 === 0}
+                    key={`${movies[index].show.name} search item`}
+                    url={movies[index].show.image?.medium}
+                    name={movies[index].show.name}
+                  />
+                ))}
+                <div className="flex justify-center px-3 py-2 w-full duration-300 bg-zinc-700/30">
+                  <motion.a
+                    whileHover="hovered"
+                    className="flex gap-1 cursor-pointer text-white/60 hover:text-white/80 underline"
                   >
-                    <ArrowRight />
-                  </motion.span>
-                </motion.a>
-              </div>
-            </motion.div>
+                    View All Shows{' '}
+                    <motion.span
+                      className="underline"
+                      variants={{ hovered: { x: 10 } }}
+                    >
+                      <ArrowRight />
+                    </motion.span>
+                  </motion.a>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.p
+                key={'search item not found'}
+                variants={searchBarVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.3 }}
+                className={`text-center py-3 absolute bg-zinc-800 w-full z-10 rounded-b-xl`}
+              >
+                There is no result
+              </motion.p>
+            )
           ) : (
-            <motion.p
-              key={'search item not found'}
+            <motion.div
+              key={'search item loading'}
               variants={searchBarVariants}
               initial="initial"
               animate="animate"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className={`text-center py-3 absolute bg-zinc-800 w-full z-10 rounded-b-xl`}
+              className={`flex justify-center py-3 absolute bg-zinc-800 w-full z-10 rounded-b-xl`}
             >
-              There is no result
-            </motion.p>
+              <Loader2 className="animate-spin" />
+            </motion.div>
           ))}
       </AnimatePresence>
     </div>
@@ -114,6 +127,3 @@ const Searchbar = () => {
 };
 
 export default Searchbar;
-// ${
-/* !isLoading && isFocus && movies.length === 0 && 'pt-3' */
-// }
