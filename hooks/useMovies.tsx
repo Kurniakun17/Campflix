@@ -24,7 +24,6 @@ const useMovies = (initialQuery: String) => {
     const res = await axios.get(
       `http://api.tvmaze.com/search/shows?q=${query}`
     );
-    console.log(res.data);
     setMovies(res.data);
     setIsLoading(false);
   };
@@ -38,3 +37,5 @@ const useMovies = (initialQuery: String) => {
 };
 
 export default useMovies;
+
+export type { Movie };
