@@ -42,6 +42,7 @@ export default function Home({
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bgUrl})`,
           backgroundSize: 'cover',
+          backgroundPosition: 'center top'
         }}
         className={`flex flex-col min-h-screen items-center justify-center flex-1 w-full px-20 text-center`}
       >
@@ -52,7 +53,7 @@ export default function Home({
           A place where you can find your favorite shows
         </p>
       </div>
-      <main className="pl-12 w-full flex flex-col pb-8">
+      <main className="pl-4 md:pl-12 w-full flex flex-col pb-8">
         <h3 className="font-semibold text-2xl mb-2">Trending</h3>
         <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
           {movies.map((movie) => (
