@@ -12,6 +12,7 @@ const SearchItem = ({
   rating = 0,
   status,
   showingOn,
+  setIsFocus,
 }: {
   id: number;
   name: string;
@@ -20,15 +21,18 @@ const SearchItem = ({
   isEven: boolean;
   status: string;
   showingOn: string;
+  setIsFocus: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
+
   return (
     <button
+      type="button"
       onClick={() => {
         router.replace(`/show/${id}`);
-        console.log(`go to /show/${id}`);
+        setIsFocus(false);
       }}
-      className={`flex gap-2 cursor-pointer px-4 py-2 ${
+      className={`flex gap-3 cursor-pointer px-4 py-2  outline-zinc-200 ${
         isEven ? 'bg-zinc-800 ' : 'bg-[rgb(43,43,46)]'
       } hover:bg-zinc-700 duration-300 
       `}
@@ -43,7 +47,7 @@ const SearchItem = ({
         alt={`${name} images`}
       />
       <div className="flex flex-col gap-0.5">
-        <p className="">{name}</p>
+        <p className="text-start">{name}</p>
         <div className="flex items-center gap-2 text-sm text-zinc-400">
           <div className="flex gap-1 items-center justify-center">
             <Star size={14} />

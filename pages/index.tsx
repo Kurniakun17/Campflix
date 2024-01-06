@@ -8,6 +8,7 @@ import { BASE_URL } from '@/utils/constants';
 import SearchItem from '@/components/SearchItem';
 import { Movie } from '@/hooks/useMovies';
 import Link from 'next/link';
+import ShowItem from '@/components/ShowItem';
 
 const poppins = Poppins({
   subsets: ['devanagari', 'latin'],
@@ -31,7 +32,6 @@ export default function Home({
   movies: Movie[];
   bgUrl: string;
 }) {
-  movies.map((movie) => console.log(movie.show));
   return (
     <div
       className={`flex bg-zinc-900 flex-col gap-8 items-center justify-between ${poppins.className}`}
@@ -59,32 +59,12 @@ export default function Home({
         <h3 className="font-semibold text-2xl lg:text-3xl mb-2">Trending</h3>
         <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
           {movies.map((movie) => (
-            <div
-              key={`${movie.show?.name} items`}
-              className="flex flex-col gap-2 w-full min-w-[150px] sm:min-w-[200px]"
-            >
-              <div className="relative group w-full cursor-pointer">
-                <img
-                  className="aspect-[11/16] w-full rounded-lg object-cover"
-                  src={
-                    movie.show.image?.medium ?? 'https://picsum.photos/1080/720'
-                  }
-                  alt=""
-                />
-                <div className="absolute bottom-0 w-full h-full duration-300 opacity-0 group-hover:opacity-100 flex justify-center items-center bg-gradient-to-t from-black/80 to-transparent">
-                  <button className="bg-red-600 px-4 py-2 rounded-lg">
-                    Play
-                  </button>
-                </div>
-              </div>
-
-              <Link
-                href={`/show/${movie.show.id}`}
-                className="text-lg hover:text-red-600 duration-300 cursor-pointer"
-              >
-                {movie.show.name}
-              </Link>
-            </div>
+            <ShowItem
+              key={movie.show.id}
+              id={movie.show.id}
+              name={movie.show.name}
+              imgUrl={movie.show.image?.medium}
+            />
           ))}
         </div>
       </main>

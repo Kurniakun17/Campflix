@@ -1,12 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import Navbar from '@/components/Navbar';
-import { Movie, Show } from '@/hooks/useMovies';
+import { Show } from '@/hooks/useMovies';
 import { BASE_URL } from '@/utils/constants';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -21,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 const DynamicShowPage = ({ data }: { data: Show }) => {
   return (
-    <div className="relative bg-zinc-900 px-4 sm:px-12 flex flex-col items-center h-screen">
+    <div className="relative bg-zinc-900 px-4 sm:px-12 flex flex-col items-center min-h-screen">
       <Head>
         <title>Campflix</title>
       </Head>
@@ -30,11 +29,11 @@ const DynamicShowPage = ({ data }: { data: Show }) => {
         <Image
           src={data.image?.original ?? 'https://picsum.photos/110/160'}
           alt={`${data.name} name`}
-          style={{ width: '150px' }}
+          style={{ width: '100%' }}
           key={data.id}
           width={150}
           height={220}
-          className="mt-4 aspect-[11/16] w-[150px] rounded-lg object-cover bg-zinc-800"
+          className="mt-4 aspect-[11/16] max-w-[150px] lg:max-w-[260px] rounded-lg object-cover bg-zinc-800"
         />
         <div className="w-full flex flex-col gap-2 mx-auto sm:px-8 sm:py-4 rounded-lg">
           <h1 className="text-3xl font-bold">{data.name}</h1>

@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SearchItem from './SearchItem';
 import { Movie } from '@/hooks/useMovies';
+import { useRouter } from 'next/router';
 
 const searchBarVariants = {
   initial: { y: '90%', opacity: 0 },
@@ -11,12 +12,17 @@ const searchBarVariants = {
 };
 
 const SearchResults = ({
+  inputRef,
   isLoading,
   movies,
+  setIsFocus,
 }: {
+  inputRef: React.RefObject<HTMLInputElement>;
   isLoading: boolean;
   movies: Movie[];
+  setIsFocus: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const router = useRouter();
 
   if (isLoading) {
     return (
@@ -59,19 +65,23 @@ const SearchResults = ({
             movies[index].show.webChannel?.name
           }
           status={movies[index].show.status}
-    
+          setIsFocus={setIsFocus}
         />
       ))}
       <div className="flex justify-center px-3 py-3 w-full text-sm duration-300 bg-[rgb(43,43,46)]">
-        <motion.a
+        <motion.button
           whileHover="hovered"
+          onClick={() => {
+            setIsFocus(false);
+            router.push(`/search/${inputRef.current?.value}`);
+          }}
           className="flex gap-1 cursor-pointer duration-300 text-white/60 hover:text-white/90 underline"
         >
           View All Shows{' '}
           <motion.span className="underline" variants={{ hovered: { x: 10 } }}>
             <ArrowRight className="size-5" />
           </motion.span>
-        </motion.a>
+        </motion.button>
       </div>
     </motion.div>
   ) : (

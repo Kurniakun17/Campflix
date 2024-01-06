@@ -2,7 +2,7 @@ import React from 'react';
 import Searchbar from './Searchbar';
 import Link from 'next/link';
 
-const Navbar = () => {
+const Navbar = ({ defaultValue }: { defaultValue?: string }) => {
   return (
     <div className="absolute flex flex-col sm:flex-row justify-between items-center p-4 sm:px-12 lg:py-8 gap-3 w-full">
       <Link
@@ -12,7 +12,7 @@ const Navbar = () => {
         Campflix
       </Link>
       <div className="flex items-center justify-end gap-4 w-full">
-        <Searchbar />
+        <Searchbar defaultValue={defaultValue ?? ''} />
         <p>Kurnia AS</p>
       </div>
     </div>
