@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
 import Image from 'next/image';
+import { BASE_URL } from '@/utils/constants';
 
 const poppins = Poppins({
   subsets: ['devanagari', 'latin'],
@@ -12,7 +13,7 @@ const poppins = Poppins({
 });
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const res = await axios.get('https://api.tvmaze.com/search/shows?q=girls');
+  const res = await axios.get(`${BASE_URL}/search/shows?q=girls`);
 
   return {
     props: {
@@ -28,7 +29,6 @@ export default function Home({
   movies: Movie[];
   bgUrl: String;
 }) {
-
   return (
     <div
       className={`flex bg-zinc-900 flex-col gap-8 items-center justify-between ${poppins.className}`}
@@ -41,7 +41,7 @@ export default function Home({
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bgUrl})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center top'
+          backgroundPosition: 'center top',
         }}
         className={`flex flex-col min-h-screen items-center justify-center flex-1 w-full px-20 text-center`}
       >

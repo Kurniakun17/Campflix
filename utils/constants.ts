@@ -1,0 +1,1 @@
+export const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://api.tvmaze.com' : 'http://api.tvmaze.com';

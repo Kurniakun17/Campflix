@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/utils/constants';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -21,9 +22,7 @@ const useMovies = (initialQuery: String) => {
   const [isLoading, setIsLoading] = useState(false);
   const getMovies = async (query: String) => {
     setIsLoading(true);
-    const res = await axios.get(
-      `https://api.tvmaze.com/search/shows?q=${query}`
-    );
+    const res = await axios.get(`${BASE_URL}/search/shows?q=${query}`);
     setMovies(res.data);
     setIsLoading(false);
   };
