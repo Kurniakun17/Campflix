@@ -1,7 +1,8 @@
 import { ArrowRight, Loader2 } from 'lucide-react';
-import React, { RefObject } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import SearchItem from './SearchItem';
+import { Movie } from '@/hooks/useMovies';
 
 const searchBarVariants = {
   initial: { y: '90%', opacity: 0 },
@@ -51,6 +52,11 @@ const SearchResults = ({
           url={movies[index].show.image?.medium}
           rating={movies[index].show.rating?.average ?? -1}
           name={movies[index].show.name}
+          showingOn={
+            movies[index].show.network?.name ??
+            movies[index].show.webChannel?.name
+          }
+          status={movies[index].show.status}
         />
       ))}
       <div className="flex justify-center px-3 py-3 w-full text-sm duration-300 bg-zinc-900">
@@ -60,7 +66,7 @@ const SearchResults = ({
         >
           View All Shows{' '}
           <motion.span className="underline" variants={{ hovered: { x: 10 } }}>
-            <ArrowRight className='size-5' />
+            <ArrowRight className="size-5" />
           </motion.span>
         </motion.a>
       </div>

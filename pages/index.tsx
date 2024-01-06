@@ -4,8 +4,10 @@ import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
-import Image from 'next/image';
 import { BASE_URL } from '@/utils/constants';
+import SearchItem from '@/components/SearchItem';
+import { Movie } from '@/hooks/useMovies';
+import Link from 'next/link';
 
 const poppins = Poppins({
   subsets: ['devanagari', 'latin'],
@@ -27,8 +29,9 @@ export default function Home({
   bgUrl,
 }: {
   movies: Movie[];
-  bgUrl: String;
+  bgUrl: string;
 }) {
+  movies.map((movie) => console.log(movie.show));
   return (
     <div
       className={`flex bg-zinc-900 flex-col gap-8 items-center justify-between ${poppins.className}`}
@@ -76,9 +79,12 @@ export default function Home({
                 </div>
               </div>
 
-              <a className="text-lg hover:text-red-600 duration-300 cursor-pointer">
+              <Link
+                href={`/show/${movie.show.id}`}
+                className="text-lg hover:text-red-600 duration-300 cursor-pointer"
+              >
                 {movie.show.name}
-              </a>
+              </Link>
             </div>
           ))}
         </div>

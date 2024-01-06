@@ -1,26 +1,35 @@
 import { BASE_URL } from '@/utils/constants';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
 type Movie = {
-  show: {
-    id: number;
-    image?: {
-      medium: string | undefined;
-      original: string | undefined;
-    };
-    name: string;
-    genres: string[];
-    rating: {
-      average: number;
-    };
-  };
+  show: Show;
 };
 
-const useMovies = (initialQuery: String) => {
+type Show = {
+  id: number;
+  image?: {
+    medium: string | undefined;
+    original: string | undefined;
+  };
+  name: string;
+  summary: string;
+  genres: string[];
+  rating: {
+    average: number;
+  };
+  network?: {
+    name: string;
+  };
+  webChannel: {
+    name: string;
+  };
+  status: string;
+};
+
+const useMovies = (initialQuery: string) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const getMovies = async (query: String) => {
+  const getMovies = async (query: string) => {
     setIsLoading(true);
     const res = await axios.get(`${BASE_URL}/search/shows?q=${query}`);
     setMovies(res.data);
@@ -37,4 +46,4 @@ const useMovies = (initialQuery: String) => {
 
 export default useMovies;
 
-export type { Movie };
+export type { Movie,Show };
