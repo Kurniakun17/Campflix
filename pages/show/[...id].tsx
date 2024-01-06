@@ -4,6 +4,8 @@ import { Movie, Show } from '@/hooks/useMovies';
 import { BASE_URL } from '@/utils/constants';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
@@ -18,20 +20,34 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 };
 
 const DynamicShowPage = ({ data }: { data: Show }) => {
-  console.log(data);
   return (
-    <div className="relative bg-zinc-900 px-4 sm:px-12 flex flex-col items-center  h-screen">
+    <div className="relative bg-zinc-900 px-4 sm:px-12 flex flex-col items-center h-screen">
+      <Head>
+        <title>Campflix</title>
+      </Head>
       <Navbar />
-      <div className='mb-16'></div>
-      <div className="flex">
-        <img
-          src={data.image?.original ?? 'https://picsum.photos'}
+      <div className="mt-32 sm:mt-28 flex flex-col items-center sm:items-start gap-4 sm:gap-0 sm:flex-row w-full">
+        <Image
+          src={data.image?.original ?? 'https://picsum.photos/110/160'}
           alt={`${data.name} name`}
-          className="mt-4 aspect-[11/16] max-w-[150px] rounded-lg"
+          style={{ width: '150px' }}
+          key={data.id}
+          width={150}
+          height={220}
+          className="mt-4 aspect-[11/16] w-[150px] rounded-lg object-cover bg-zinc-800"
         />
-        <div className="max-w-2xl mx-auto p-8 rounded-lg">
-          <h1 className="text-3xl font-bold mb-4">{data.name}</h1>
-          <p className="text-gray-500 mb-4">{data.summary}</p>
+        <div className="w-full flex flex-col gap-2 mx-auto sm:px-8 sm:py-4 rounded-lg">
+          <h1 className="text-3xl font-bold">{data.name}</h1>
+          {data.summary ? (
+            <div
+              dangerouslySetInnerHTML={{ __html: data.summary }}
+              className="mb-2 text-gray-400"
+            />
+          ) : (
+            <div>
+              <p>No summary available</p>
+            </div>
+          )}
           <div className="flex space-x-4">
             {data.genres.map((genre, index) => (
               <span

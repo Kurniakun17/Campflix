@@ -11,21 +11,21 @@ const Searchbar = () => {
 
   return (
     <div
-      className={`bg-zinc-900 relative z-20 flex flex-col ${
+      className={`bg-zinc-800 relative z-20 flex flex-col ${
         isFocus && inputRef.current?.value && 'rounded-b-none'
       }  w-[90%] sm:w-96 rounded-xl duration-300`}
     >
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="flex gap-2 bg-zinc-900 relative z-30 rounded-xl items-center pl-4"
+        className="flex gap-2 bg-zinc-800 relative z-30 rounded-xl items-center pl-4"
       >
-        <button className="py-3 bg-zinc-900">
+        <button className="py-3 bg-zinc-800">
           <AnimatedSearchIcon />
         </button>
         <input
           ref={inputRef}
           onChange={(e) => debounce(e.target.value)}
-          className="bg-zinc-900 py-3 focus:outline-none w-full rounded-r-xl"
+          className="bg-zinc-800 py-3 focus:outline-none w-full rounded-r-xl"
           placeholder="Search a show"
         />
       </form>
@@ -70,8 +70,16 @@ const useSearchBar = (getMovies: (value: string) => void) => {
 };
 
 const searchIconVariants = {
-  initial: { pathLength: 0, opacity: 0, transition: { duration: 1 } },
-  animate: { pathLength: 1, opacity: 1, transition: { duration: 1 } },
+  initial: {
+    pathLength: 0,
+    color: 'rgb(255,255,255)',
+    transition: { duration: 1 },
+  },
+  animate: {
+    pathLength: 1,
+    color: 'rgb(156 163 175)',
+    transition: { duration: 1 },
+  },
 };
 
 const AnimatedSearchIcon = () => {

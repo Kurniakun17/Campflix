@@ -56,17 +56,16 @@ export default function Home({
         </p>
       </div>
       <main className="pl-4 md:pl-12 w-full flex flex-col pb-8">
-        <h3 className="font-semibold text-2xl mb-2">Trending</h3>
+        <h3 className="font-semibold text-2xl lg:text-3xl mb-2">Trending</h3>
         <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
           {movies.map((movie) => (
             <div
               key={`${movie.show?.name} items`}
-              style={{ flexBasis: '25%' }}
-              className="flex flex-col gap-2"
+              className="flex flex-col gap-2 w-full min-w-[150px] sm:min-w-[200px]"
             >
-              <div className="relative group cursor-pointer">
+              <div className="relative group w-full cursor-pointer">
                 <img
-                  className="aspect-[11/16] min-w-[150px] rounded-lg object-cover"
+                  className="aspect-[11/16] w-full rounded-lg object-cover"
                   src={
                     movie.show.image?.medium ?? 'https://picsum.photos/1080/720'
                   }

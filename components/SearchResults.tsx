@@ -17,6 +17,7 @@ const SearchResults = ({
   isLoading: boolean;
   movies: Movie[];
 }) => {
+
   if (isLoading) {
     return (
       <motion.div
@@ -26,7 +27,7 @@ const SearchResults = ({
         animate="animate"
         exit="exit"
         transition={{ duration: 0.3 }}
-        className={`flex justify-center py-3 absolute bg-zinc-900 w-full z-10 rounded-b-xl`}
+        className={`flex justify-center py-3 absolute bg-zinc-800 w-full z-10 rounded-b-xl`}
       >
         <Loader2 className="animate-spin" />
       </motion.div>
@@ -49,6 +50,7 @@ const SearchResults = ({
         <SearchItem
           isEven={(index + 1) % 2 === 0}
           key={`${movies[index].show.name} search item`}
+          id={movies[index].show.id}
           url={movies[index].show.image?.medium}
           rating={movies[index].show.rating?.average ?? -1}
           name={movies[index].show.name}
@@ -57,9 +59,10 @@ const SearchResults = ({
             movies[index].show.webChannel?.name
           }
           status={movies[index].show.status}
+    
         />
       ))}
-      <div className="flex justify-center px-3 py-3 w-full text-sm duration-300 bg-zinc-900">
+      <div className="flex justify-center px-3 py-3 w-full text-sm duration-300 bg-[rgb(43,43,46)]">
         <motion.a
           whileHover="hovered"
           className="flex gap-1 cursor-pointer duration-300 text-white/60 hover:text-white/90 underline"
@@ -79,7 +82,7 @@ const SearchResults = ({
       animate="animate"
       exit="exit"
       transition={{ duration: 0.3 }}
-      className={`text-center py-3 absolute bg-zinc-900 w-full z-10 rounded-b-xl`}
+      className={`text-center py-3 absolute bg-zinc-800 w-full z-10 rounded-b-xl`}
     >
       There is no result
     </motion.p>

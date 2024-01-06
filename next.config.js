@@ -2,8 +2,19 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['picsum.photos', 'static.tvmaze.com'],
+    remotePatterns: [
+      {
+        hostname: 'picsum.photos',
+        protocol: 'https',
+        pathname: '**',
+      },
+      {
+        hostname: 'static.tvmaze.com',
+        protocol: 'https',
+        pathname: '**',
+      },
+    ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
