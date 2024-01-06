@@ -13,7 +13,7 @@ const Navbar = ({ defaultValue }: { defaultValue?: string }) => {
       </Link>
       <div className="flex items-center justify-end gap-4 w-full">
         <Searchbar defaultValue={defaultValue ?? ''} />
-        <p>Kurnia AS</p>
+        <p className='text-sm md:text-lg'>Kurnia Kharisma</p>
       </div>
     </div>
   );

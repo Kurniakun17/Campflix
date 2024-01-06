@@ -48,21 +48,20 @@ export default function Home({
         }}
         className={`flex flex-col min-h-screen items-center justify-center flex-1 w-full px-20 text-center`}
       >
-        <h1 className="text-6xl font-bold">
+        <h1 className="text-4xl lg:text-6xl font-bold">
           Welcome to <span className="text-red-600">Campflix</span>
         </h1>
-        <p className="mt-3 text-2xl">
+        <p className="mt-2 lg:mt-3 text-1xl">
           A place where you can find your favorite shows
         </p>
       </div>
-      <main className="pl-4 md:pl-12 w-full flex flex-col pb-8">
-        <h3 className="font-semibold text-2xl lg:text-3xl mb-2">Trending</h3>
+      <main className="pl-4 md:pl-12 w-full flex flex-col gap-4 pb-8">
+        <h3 className="font-semibold text-2xl lg:text-3xl ">Trending</h3>
         <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
           {movies.map((movie) => (
             <ShowItem
               key={movie.show.id}
-              id={movie.show.id}
-              name={movie.show.name}
+              {...movie.show}
               imgUrl={movie.show.image?.medium}
             />
           ))}
