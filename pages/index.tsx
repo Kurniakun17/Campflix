@@ -29,7 +29,6 @@ export default function Home({
   bgUrl: String;
 }) {
 
-  console.log(movies[0].show);
   return (
     <div
       className={`flex bg-zinc-900 flex-col gap-8 items-center justify-between ${poppins.className}`}

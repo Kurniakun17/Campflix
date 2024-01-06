@@ -8,7 +8,6 @@ import SearchResults from './SearchResults';
 const Searchbar = () => {
   const { movies, isLoading, getMovies } = useMovies('');
   const { isFocus, inputRef, debounce } = useSearchBar(getMovies);
-  movies.map(movie => console.log(movie.show.rating))
 
   return (
     <div

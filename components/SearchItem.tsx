@@ -14,7 +14,6 @@ const SearchItem = ({
 }) => {
   return (
     <div
-      onClick={() => console.log(name)}
       className={`flex gap-2 cursor-pointer px-4 py-2 ${
         isEven ? 'bg-zinc-900 ' : 'bg-[rgb(20,20,23)]'
       } duration-300 hover:bg-red-600`}

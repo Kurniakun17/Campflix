@@ -22,7 +22,7 @@ const useMovies = (initialQuery: String) => {
   const getMovies = async (query: String) => {
     setIsLoading(true);
     const res = await axios.get(
-      `http://api.tvmaze.com/search/shows?q=${query}`
+      `https://api.tvmaze.com/search/shows?q=${query}`
     );
     setMovies(res.data);
     setIsLoading(false);
