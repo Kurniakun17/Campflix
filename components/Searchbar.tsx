@@ -21,7 +21,7 @@ const Searchbar = ({ defaultValue }: { defaultValue: string }) => {
       }}
       className={`bg-zinc-800 relative z-20 flex flex-col ${
         isFocus && inputRef.current?.value && 'rounded-b-none'
-      }  w-[90%] sm:w-96 rounded-xl duration-300`}
+      }  w-[100%] sm:w-96 rounded-xl duration-300`}
     >
       <div className="flex gap-2 bg-zinc-800 relative z-30 rounded-xl items-center pl-4">
         <button className="py-3 bg-zinc-800">

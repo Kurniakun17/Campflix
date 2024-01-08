@@ -24,6 +24,38 @@ type Show = {
     name: string;
   };
   status: string;
+  _embedded?: {
+    episodes: Episode[];
+  };
+};
+
+type Episode = {
+  id: number;
+  url: string;
+  name: string;
+  season: number;
+  number: number;
+  type: string;
+  airdate: string;
+  airtime: string;
+  airstamp: string;
+  runtime: number;
+  rating: {
+    average: number | null;
+  };
+  image: null | {
+    medium: string;
+    original: string;
+  };
+  summary: string;
+  _links: {
+    self: {
+      href: string;
+    };
+    show: {
+      href: string;
+    };
+  };
 };
 
 const useMovies = (initialQuery: string) => {
@@ -46,4 +78,4 @@ const useMovies = (initialQuery: string) => {
 
 export default useMovies;
 
-export type { Movie,Show };
+export type { Movie, Show };

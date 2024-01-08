@@ -1,6 +1,5 @@
 import { Star, Tv } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -39,7 +38,7 @@ const SearchItem = ({
     >
       {' '}
       <Image
-        className="h-auto aspect-[12/16] object-cover"
+        className="h-auto aspect-[12/16] w-full object-cover"
         style={{ width: 'auto' }}
         width={45}
         height={58}
@@ -48,7 +47,7 @@ const SearchItem = ({
       />
       <div className="flex flex-col gap-0.5">
         <p className="text-start">{name}</p>
-        <div className="flex items-center gap-2 text-sm text-zinc-400">
+        <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-400">
           <div className="flex gap-1 items-center justify-center">
             <Star size={14} />
             <p className="">{rating !== -1 ? rating.toString() : 'NR'}</p>

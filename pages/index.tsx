@@ -5,9 +5,7 @@ import Navbar from '@/components/Navbar';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
 import { BASE_URL } from '@/utils/constants';
-import SearchItem from '@/components/SearchItem';
 import { Movie } from '@/hooks/useMovies';
-import Link from 'next/link';
 import ShowItem from '@/components/ShowItem';
 
 const poppins = Poppins({
@@ -25,6 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   };
 };
+
 export default function Home({
   movies,
   bgUrl,
@@ -55,7 +54,7 @@ export default function Home({
           A place where you can find your favorite shows
         </p>
       </div>
-      <main className="pl-4 md:pl-12 w-full flex flex-col gap-4 pb-8">
+      <section className="pl-6 md:pl-12 w-full flex flex-col gap-4">
         <h3 className="font-semibold text-2xl lg:text-3xl ">Trending</h3>
         <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
           {movies.map((movie) => (
@@ -66,7 +65,19 @@ export default function Home({
             />
           ))}
         </div>
-      </main>
+      </section>
+      <section className="pl-4 md:pl-12 w-full flex flex-col gap-4 pb-8">
+        <h3 className="font-semibold text-2xl lg:text-3xl ">Trending</h3>
+        <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
+          {movies.map((movie) => (
+            <ShowItem
+              key={movie.show.id}
+              {...movie.show}
+              imgUrl={movie.show.image?.medium}
+            />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
