@@ -59,7 +59,11 @@ const SearchItem = ({
             <p>{showingOn}</p>
           </div>
           <div className="h-1 w-1 bg-zinc-400 rounded-full" />
-          <p>{status === 'To Be Determined' ? 'On-Going' : status}</p>
+          <p>
+            {status === 'To Be Determined' || status === 'Running'
+              ? 'On-Going'
+              : status}
+          </p>
         </div>
       </div>
     </button>

@@ -17,6 +17,7 @@ const Searchbar = ({ defaultValue }: { defaultValue: string }) => {
       ref={formRef}
       onSubmit={(e) => {
         e.preventDefault();
+        if (!inputRef.current?.value) return;
         router.replace(`/search/${inputRef.current?.value}`);
       }}
       className={`bg-zinc-800 relative z-20 flex flex-col ${

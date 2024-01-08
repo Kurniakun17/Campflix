@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
 import { BASE_URL } from '@/utils/constants';
-import { Movie } from '@/hooks/useMovies';
+import { Movie } from '@/types/type';
 import ShowItem from '@/components/ShowItem';
 
 const poppins = Poppins({
@@ -54,25 +54,31 @@ export default function Home({
           A place where you can find your favorite shows
         </p>
       </div>
-      <section className="pl-6 md:pl-12 w-full flex flex-col gap-4">
+      <section className="pl-6 max-w-[1800px] md:pl-12 w-full flex flex-col gap-4">
         <h3 className="font-semibold text-2xl lg:text-3xl ">Trending</h3>
         <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
           {movies.map((movie) => (
             <ShowItem
               key={movie.show.id}
-              {...movie.show}
+              rating={movie.show.rating.average}
+              id={movie.show.id}
+              name={movie.show.name}
+              genres={movie.show.genres}
               imgUrl={movie.show.image?.medium}
             />
           ))}
         </div>
       </section>
-      <section className="pl-4 md:pl-12 w-full flex flex-col gap-4 pb-8">
+      <section className="pl-4 max-w-[1800px] md:pl-12 w-full flex flex-col gap-4 pb-8">
         <h3 className="font-semibold text-2xl lg:text-3xl ">Trending</h3>
         <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
           {movies.map((movie) => (
             <ShowItem
               key={movie.show.id}
-              {...movie.show}
+              rating={movie.show.rating.average}
+              id={movie.show.id}
+              name={movie.show.name}
+              genres={movie.show.genres}
               imgUrl={movie.show.image?.medium}
             />
           ))}

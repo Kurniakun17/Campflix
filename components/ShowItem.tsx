@@ -1,3 +1,4 @@
+import { Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -7,11 +8,13 @@ const ShowItem = ({
   name,
   imgUrl,
   genres,
+  rating,
 }: {
   id: number;
   name: string;
   imgUrl?: string;
   genres?: string[];
+  rating?: number;
 }) => {
   return (
     <div
@@ -31,20 +34,24 @@ const ShowItem = ({
           <button className="bg-red-600 px-4 py-2 rounded-lg">Play</button>
         </div>
       </div>
-      <div className='flex flex-col'>
+      <div className="flex flex-col">
         <Link
           href={`/show/${id}`}
           className="text-lg md:text-xl hover:text-red-600 duration-300 cursor-pointer"
         >
           {name}
         </Link>
-        <div className="flex gap-1 text-gray-400 line-clamp-1">
+        <div className="flex gap-1 md:text-md text-gray-400 line-clamp-1">
           {genres?.map((genre, index) => (
             <div key={index}>
               <span className="rounded-lg text-sm">{genre}</span>
               {index < genres.length - 1 && ', '}
             </div>
           ))}
+        </div>
+        <div className="flex items-center gap-1 text-gray-400">
+          <Star size={20} className='stroke-[1.2px]'/>
+          <p className="text-sm md:text-md mt-0.5">{rating ? rating : 'NR'}</p>
         </div>
       </div>
     </div>

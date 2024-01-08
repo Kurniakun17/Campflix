@@ -29,3 +29,12 @@ body {
 .profile-tooltip {
   @apply after:content-['Kurnia'] after:text-sm after:absolute after:-bottom-8 after:bg-zinc-800 after:p-1 after:px-4 after:left-1/2 after:-translate-x-1/2 after:rounded-lg after:scale-0 hover:after:scale-100 sm:hover:after:scale-0 after:duration-300;
 }
+
+.select-arrow {
+  background-image: url('/arrow-down.svg');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 8px) center;
+  appearance: none;
+  -webkit-appearance: none;
+}

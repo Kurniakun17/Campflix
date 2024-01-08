@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import ShowItem from '@/components/ShowItem';
-import { Movie } from '@/hooks/useMovies';
+import { Movie } from '@/types/type';
 import { BASE_URL } from '@/utils/constants';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
@@ -31,7 +31,7 @@ const SearchPage = ({
         <title>Campflix</title>
       </Head>
       <Navbar defaultValue={searchValue} />
-      <div className="mt-32 sm:mt-28 flex flex-col gap-4">
+      <div className="mt-32 sm:mt-28 flex max-w-[1600px] mx-auto flex-col gap-4">
         <h1 className="text-3xl font-bold">Search results for {searchValue}</h1>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
           {movies.map((movie) => {
@@ -39,8 +39,10 @@ const SearchPage = ({
               <ShowItem
                 key={movie.show.id}
                 imgUrl={movie.show.image?.medium}
-                {...movie.show}
-
+                id={movie.show.id}
+                name={movie.show.name}
+                genres={movie.show.genres}
+                rating={movie.show.rating.average}
               />
             );
           })}
