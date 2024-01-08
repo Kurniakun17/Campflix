@@ -50,7 +50,7 @@ const Episodes = ({ episodes }: { episodes: Episode[] }) => {
                     key={episode.id}
                     width={150}
                     height={220}
-                    className="cursor-pointer hover:scale-105 duration-300 max-w-[100px] sm:max-w-[150px] rounded-lg object-cover bg-zinc-800"
+                    className="cursor-pointer hover:scale-105 duration-300 max-w-[120px] sm:max-w-[150px] rounded-lg object-cover bg-zinc-800"
                   />
                   <div className="flex flex-col py-2">
                     <h3 className="line-clamp-1 cursor-pointer hover:text-red-600 duration-300">
