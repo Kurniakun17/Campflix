@@ -98,17 +98,18 @@ const Genres = ({ genres }: { genres: string[] }) => {
 const Rating = ({ rating }: { rating?: number }) => {
   return (
     <div className="flex gap-2 items-center">
-      <div className="p-2 px-4 bg-zinc-700 rounded-lg font-bold text-xl">
-        {rating ? rating : 'No Rating'}
+      <div className="flex gap-1 items-center p-2 px-3 bg-zinc-700 rounded-lg font-bold text-xl">
+        <Star key={``} className={`text-red-600 fill-red-600`} />
+        <p>{rating ? rating : 'No Rating'}/10</p>
       </div>
-      <div className="flex gap-1 text-gray-400">
+      {/* <div className="flex gap-1 text-gray-400">
         {Array.from({ length: 10 }).map((_, index) => (
           <Star
             key={`star-${index}`}
             className={` ${rating! > index + 1 && 'text-red-600 fill-red-600'}`}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

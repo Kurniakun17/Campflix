@@ -34,12 +34,12 @@ const Episodes = ({ episodes }: { episodes: Episode[] }) => {
               }
             )}
           </select>
-          <div className="pl-4 grid gap-3">
+          <div className="grid gap-3">
             {episodes.slice(numEpisodes, numEpisodes + 10).map((episode) => {
               return (
                 <div
                   key={episode.id}
-                  className="flex gap-4 rounded-lg bg-zinc-800"
+                  className="flex gap-4 rounded-lg bg-zinc-800 hover:brightness-150 cursor-pointer duration-300"
                 >
                   <Image
                     src={
@@ -70,7 +70,7 @@ const Episodes = ({ episodes }: { episodes: Episode[] }) => {
                 setNumEpisodes((prev) => (prev - 10 < 0 ? 0 : prev - 10))
               }
               disabled={numEpisodes === 0}
-              className="flex items-center pl-1 disabled:brightness-50 pr-2 py-1 rounded-lg bg-zinc-800 duration-300 hover:brightness-150 border border-transparent active:border-white"
+              className="flex items-center pl-1 disabled:brightness-50 pr-2 py-1 rounded-lg bg-zinc-800 duration-300 disabled:scale-0 hover:brightness-150 border border-transparent active:border-white"
             >
               <ChevronLeft size={20} className="mt-0.5" /> Back
             </button>
@@ -89,7 +89,7 @@ const Episodes = ({ episodes }: { episodes: Episode[] }) => {
           </div>
         </>
       )}
-    </div>
+    </div> 
   );
 };
 
