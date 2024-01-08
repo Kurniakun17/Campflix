@@ -68,7 +68,7 @@ const DynamicShowPage = ({ data }: { data: Show }) => {
           <div className="pl-4 grid gap-3">
             {data._embedded?.episodes.map((episode) => {
               return (
-                <div key={episode.id} className="flex gap-4 ">
+                <div key={episode.id} className="flex gap-4 rounded-lg bg-zinc-800">
                   <Image
                     src={
                       episode.image?.medium ?? 'https://picsum.photos/110/160'
@@ -80,7 +80,7 @@ const DynamicShowPage = ({ data }: { data: Show }) => {
                     height={220}
                     className="cursor-pointer hover:scale-105 duration-300 max-w-[100px] sm:max-w-[150px] rounded-lg object-cover bg-zinc-800"
                   />
-                  <div className="flex flex-col">
+                  <div className="flex flex-col py-2">
                     <h3 className="line-clamp-1 cursor-pointer hover:text-red-600 duration-300">
                       {episode.name}
                     </h3>
