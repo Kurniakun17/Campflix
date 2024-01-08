@@ -2,7 +2,7 @@ import { ArrowRight, Loader2 } from 'lucide-react';
 import React from 'react';
 import { motion } from 'framer-motion';
 import SearchItem from './SearchItem';
-import { Movie } from '@/hooks/useMovies';
+import { Movie } from '@/types/type';
 import { useRouter } from 'next/router';
 
 const searchBarVariants = {
