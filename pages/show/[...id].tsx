@@ -29,7 +29,7 @@ const DynamicShowPage = ({ data }: { data: Show }) => {
         <title>Campflix</title>
       </Head>
       <Navbar />
-      <div className="flex w-full max-w-[1600px] mx-auto flex-col gap-2 mt-32 sm:mt-28 mb-6 ">
+      <div className="flex w-[95%] max-w-[1600px] mx-auto flex-col gap-2 mt-32 sm:mt-28 mb-6 ">
         <div className="flex flex-col items-center sm:items-start gap-4 sm:gap-0 sm:flex-row w-full">
           <Image
             src={data.image?.original ?? 'https://picsum.photos/110/160'}
@@ -38,7 +38,7 @@ const DynamicShowPage = ({ data }: { data: Show }) => {
             key={data.id}
             width={150}
             height={220}
-            className="mt-4 aspect-[11/16] max-w-[150px] lg:max-w-[260px] rounded-lg object-cover bg-zinc-800"
+            className="mt-4 aspect-[11/16] max-w-[150px] lg:max-w-[260px] rounded-lg object-cover bg-zinc-700"
           />
           <div className="w-full flex flex-col gap-2 mx-auto sm:px-8 sm:py-4 rounded-lg">
             <h1 className="text-3xl font-bold">{data.name}</h1>
@@ -98,18 +98,14 @@ const Genres = ({ genres }: { genres: string[] }) => {
 const Rating = ({ rating }: { rating?: number }) => {
   return (
     <div className="flex gap-2 items-center">
-      <div className="flex gap-1 items-center p-2 px-3 bg-zinc-700 rounded-lg font-bold text-xl">
-        <Star key={``} className={`text-red-600 fill-red-600`} />
-        <p>{rating ? rating : 'No Rating'}/10</p>
+      <div className="flex gap-1 items-center p-2 px-3 bg-zinc-800 rounded-lg font-bold text-xl">
+        <Star
+          className={`${
+            rating ? 'text-red-600 fill-red-600' : 'text-gray-400 fill-gray-400'
+          }`}
+        />
+        <p className="text-gray-200">{rating ? `${rating}/10` : 'No Rating'}</p>
       </div>
-      {/* <div className="flex gap-1 text-gray-400">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <Star
-            key={`star-${index}`}
-            className={` ${rating! > index + 1 && 'text-red-600 fill-red-600'}`}
-          />
-        ))}
-      </div> */}
     </div>
   );
 };

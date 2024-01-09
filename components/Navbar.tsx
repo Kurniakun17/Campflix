@@ -8,7 +8,7 @@ const Navbar = ({ defaultValue }: { defaultValue?: string }) => {
     <div className="absolute max-w-[1800px] mx-auto flex flex-col sm:flex-row justify-between items-center p-4 sm:px-12 lg:py-8 gap-3 w-full">
       <Link
         href={'/'}
-        className="font-bold text-red-600 text-3xl sm:text-2xl md:text-4xl"
+        className="font-bold text-red-600 text-3xl md:text-4xl"
       >
         Campflix
       </Link>

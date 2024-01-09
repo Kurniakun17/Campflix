@@ -11,6 +11,7 @@ type Show = {
   name: string;
   summary: string;
   genres: string[];
+  url: string;
   rating: {
     average: number;
   };

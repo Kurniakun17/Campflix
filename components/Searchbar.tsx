@@ -91,11 +91,13 @@ const searchIconVariants = {
     pathLength: 0,
     color: 'rgb(255,255,255)',
     transition: { duration: 1 },
+    filter: { brightness: 1 },
   },
   animate: {
     pathLength: 1,
     color: 'rgb(156 163 175)',
     transition: { duration: 1 },
+    filter: { brightness: 3 },
   },
 };
 

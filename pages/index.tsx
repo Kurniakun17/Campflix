@@ -5,8 +5,9 @@ import Navbar from '@/components/Navbar';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
 import { BASE_URL } from '@/utils/constants';
-import { Movie } from '@/types/type';
+import { Movie, Show } from '@/types/type';
 import ShowItem from '@/components/ShowItem';
+import { format } from 'date-fns';
 
 const poppins = Poppins({
   subsets: ['devanagari', 'latin'],
@@ -14,12 +15,21 @@ const poppins = Poppins({
 });
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const res = await axios.get(`${BASE_URL}/search/shows?q=girls`);
+  const date = new Date();
+  date.setDate(date.getDate() - 1);
+  const formattedDate = format(date, 'yyyy-MM-dd');
 
+  const girlsRes = await axios.get(`${BASE_URL}/search/shows?q=girls`);
+  const newEpsRes = await axios.get(
+    `${BASE_URL}/schedule?country=JP&date=${formattedDate}`
+  );
+
+  const newEps = newEpsRes.data.map((movie: Movie) => movie.show);
   return {
     props: {
-      movies: res.data,
-      bgUrl: res.data[5].show.image?.original,
+      movies: girlsRes.data,
+      bgUrl: girlsRes.data[4].show.image?.original,
+      newEps: newEps.slice(0, 10),
     },
   };
 };
@@ -27,9 +37,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 export default function Home({
   movies,
   bgUrl,
+  newEps,
 }: {
   movies: Movie[];
   bgUrl: string;
+  newEps: Show[];
 }) {
   return (
     <div
@@ -55,8 +67,8 @@ export default function Home({
         </p>
       </div>
       <section className="pl-6 max-w-[1800px] md:pl-12 w-full flex flex-col gap-4">
-        <h3 className="font-semibold text-2xl lg:text-3xl ">Trending</h3>
-        <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
+        <h3 className="font-semibold text-2xl  ">Trending</h3>
+        <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4 lg:gap-6">
           {movies.map((movie) => (
             <ShowItem
               key={movie.show.id}
@@ -65,21 +77,23 @@ export default function Home({
               name={movie.show.name}
               genres={movie.show.genres}
               imgUrl={movie.show.image?.medium}
+              url={movie.show.url}
             />
           ))}
         </div>
       </section>
       <section className="pl-4 max-w-[1800px] md:pl-12 w-full flex flex-col gap-4 pb-8">
-        <h3 className="font-semibold text-2xl lg:text-3xl ">Trending</h3>
-        <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4">
-          {movies.map((movie) => (
+        <h3 className="font-semibold text-2xl  ">New Episodes</h3>
+        <div className="flex w-full overflow-x-scroll scrollbar-none pr-4 gap-4 lg:gap-6">
+          {newEps.map((movie) => (
             <ShowItem
-              key={movie.show.id}
-              rating={movie.show.rating.average}
-              id={movie.show.id}
-              name={movie.show.name}
-              genres={movie.show.genres}
-              imgUrl={movie.show.image?.medium}
+              key={movie.id}
+              rating={movie.rating.average}
+              id={movie.id}
+              name={movie.name}
+              genres={movie.genres}
+              imgUrl={movie.image?.medium}
+              url={movie.url}
             />
           ))}
         </div>

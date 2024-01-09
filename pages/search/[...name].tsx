@@ -31,21 +31,28 @@ const SearchPage = ({
         <title>Campflix</title>
       </Head>
       <Navbar defaultValue={searchValue} />
-      <div className="mt-32 sm:mt-28 flex max-w-[1600px] mx-auto flex-col gap-4">
-        <h1 className="text-3xl font-bold">Search results for {searchValue}</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-          {movies.map((movie) => {
-            return (
-              <ShowItem
-                key={movie.show.id}
-                imgUrl={movie.show.image?.medium}
-                id={movie.show.id}
-                name={movie.show.name}
-                genres={movie.show.genres}
-                rating={movie.show.rating.average}
-              />
-            );
-          })}
+      <div className="mt-32 sm:mt-28 flex w-[95%] max-w-[1600px] mx-auto flex-col gap-4">
+        <h1 className="text-2xl sm:text-3xl font-bold">Search results for {searchValue}</h1>
+        <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 gap-y-8">
+          {movies.length > 0 ? (
+            movies.map((movie) => {
+              return (
+                <ShowItem
+                  key={movie.show.id}
+                  imgUrl={movie.show.image?.medium}
+                  id={movie.show.id}
+                  name={movie.show.name}
+                  genres={movie.show.genres}
+                  rating={movie.show.rating.average}
+                  url={movie.show.url}
+                />
+              );
+            })
+          ) : (
+            <h2 className="text-xl sm:text-2xl font-semibold text-center col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-6">
+              There is no show{' '}
+            </h2>
+          )}
         </div>
       </div>
     </div>

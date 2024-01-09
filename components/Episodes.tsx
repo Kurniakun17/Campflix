@@ -70,7 +70,7 @@ const Episodes = ({ episodes }: { episodes: Episode[] }) => {
                 setNumEpisodes((prev) => (prev - 10 < 0 ? 0 : prev - 10))
               }
               disabled={numEpisodes === 0}
-              className="flex items-center pl-1 disabled:brightness-50 pr-2 py-1 rounded-lg bg-zinc-800 duration-300 disabled:scale-0 hover:brightness-150 border border-transparent active:border-white"
+              className="flex items-center pl-1 disabled:opacity-55 pr-2 py-1 rounded-lg bg-zinc-800 duration-300 hover:brightness-150 border border-transparent active:border-white"
             >
               <ChevronLeft size={20} className="mt-0.5" /> Back
             </button>
@@ -81,7 +81,7 @@ const Episodes = ({ episodes }: { episodes: Episode[] }) => {
                 )
               }
               disabled={numEpisodes + 10 >= episodes.length}
-              className="flex items-center pr-1 disabled:brightness-50 pl-2 py-1 rounded-lg bg-zinc-800 duration-300 hover:brightness-150 border border-transparent active:border-white"
+              className="flex items-center pr-1 disabled:opacity-55 pl-2 py-1 rounded-lg bg-zinc-800 duration-300 hover:brightness-150 border border-transparent active:border-white"
             >
               Next
               <ChevronRight size={20} className="mt-0.5" />
@@ -89,7 +89,7 @@ const Episodes = ({ episodes }: { episodes: Episode[] }) => {
           </div>
         </>
       )}
-    </div> 
+    </div>
   );
 };
 
